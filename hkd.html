@@ -49,9 +49,10 @@
           i.forEach(function(item){			
             if(Array.isArray(item)){ 
             var btc_price = item[0]; 
-            currentPrice = Math.round((1/btc_price)*100000000*7.75); // satoshis per dollar
+            currentPrice = Math.round((1/btc_price)*100000000/7.75); // satoshis per HKD dollar
             document.title = currentPrice.toLocaleString() + " sats";
-            document.querySelector('#current').textContent = currentPrice.toLocaleString();
+	   document.querySelector('#current').textContent = currentPrice.toLocaleString();
+		
             }				
           });		
         }	
@@ -135,7 +136,7 @@
 	</div>
   </div>
     <script>
-    d3.json('/historical', function(data) {
+    d3.json('/hkd_historical', function(data) {
         data = MG.convert.date(data, 'date');
 
 		var windowWidth = $(window).width();
@@ -199,7 +200,7 @@
             xax_count: 10,
             yax_count: 8,
             x_accessor: 'date',
-            y_accessor: 'satusd_rate',
+            y_accessor: 'sathkd_rate',
             y_scale_type: 'log',
             y_extended_ticks: true,
             yax_units: ' sats',
@@ -232,3 +233,4 @@
     </script>
 
 </body>
+
