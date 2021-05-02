@@ -13,7 +13,7 @@
 <body>
   <div class="container" style="margin-top: 40px;">
     <div class="row">
-      <center><h3>1 HK dollar is currently worth <span id="current"></span> sats</h3></center>
+      <center><h3>1 US dollar is currently worth <span id="current"></span> sats</h3></center>
       <script>
       var currentPrice = 0; var ws_ticker_id, t;
    
@@ -49,24 +49,19 @@
           i.forEach(function(item){			
             if(Array.isArray(item)){ 
             var btc_price = item[0]; 
-            currentPrice = Math.round((1/btc_price)*100000000/7.75); // satoshis per HKD dollar
+            currentPrice = Math.round((1/btc_price)*100000000); // satoshis per dollar
             document.title = currentPrice.toLocaleString() + " sats";
-	   document.querySelector('#current').textContent = currentPrice.toLocaleString();
-		
+            document.querySelector('#current').textContent = currentPrice.toLocaleString();
             }				
-          });		
+          });					
         }	
       }
    
       </script>
-
-      <div id='historical'>
-      </div>
-      
       <table class="u-full-width">
         <thead>
           <tr>
-	    <th>Date</th>
+		    <th>Date</th>
             <th>Price</th>
             <th>Percent Change</th>
           </tr>
@@ -135,15 +130,12 @@
 		 
         </tbody>
       </table>
-
-      
-        <p>
-	*data source from usdsat.com, adapted for HKD
-	</p>
+      <div id='historical'>
+  	  </div>
 	</div>
   </div>
     <script>
-    d3.json('/hkd_historical', function(data) {
+    d3.json('/historical', function(data) {
         data = MG.convert.date(data, 'date');
 
 		var windowWidth = $(window).width();
@@ -195,7 +187,7 @@
         }];
 
         MG.data_graphic({
-            title: 'HKDSAT Historical Performance',
+            title: 'USDSAT Historical Performance',
             data: data,
             full_width: true,
             height: graphHeight,
@@ -207,7 +199,7 @@
             xax_count: 10,
             yax_count: 8,
             x_accessor: 'date',
-            y_accessor: 'sathkd_rate',
+            y_accessor: 'satusd_rate',
             y_scale_type: 'log',
             y_extended_ticks: true,
             yax_units: ' sats',
@@ -228,7 +220,7 @@
           .append('image')
           .attr('width', '100%')
           .attr('height', '100%')
-          .attr('xlink:href', '/assets/10hkd.jpg');
+          .attr('xlink:href', '/assets/Dollarnote_hq.jpg');
 
           $('svg path')
           .css('opacity', 1)
@@ -240,4 +232,3 @@
     </script>
 
 </body>
-
