@@ -17,7 +17,9 @@ def del_years(d, years):
 
 # generate 10 year historical prices based on today's date
 def get_10year(lang):
-    filep = open('static/hkd_historical')
+#    path = '/home/bitkarrot/satshkd/static/hkd_historical'
+    path = './static/hkd_historical'
+    filep = open(path)
     historical = json.load(filep)
     hist_entries = []
 
