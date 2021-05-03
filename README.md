@@ -1,10 +1,10 @@
 ## README
 
-To run as node.js
-npm install -g http-server 
-$ http-server --port 80
+Todo:
+- need cron job for updating daily data from bitfinex
+- deploy to production with wsgi and nginx
+- localization
 
-need cron job for updating daily data from bitfinex
 
 To run as python3
 
