@@ -24,3 +24,6 @@ yarn-error.log*
 package-lock.json
 *~
 env
+package.json
+__pycache__
+archive
