@@ -2,8 +2,8 @@
 
 Todo:
 - need cron job for updating daily data from bitfinex
-- deploy to production with wsgi and nginx
-- localization
+- localization - need localization template like nodejs below
+- deploy to production with wsgi and nginx - done
 
 
 To run as python3
