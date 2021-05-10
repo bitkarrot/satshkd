@@ -1,6 +1,6 @@
 <!doctype html>
 <head>
-  <title>fiat 2 sats</title>
+  <title>hkd 2 sats</title>
   <link rel="stylesheet" type="text/css" href="/static/skeleton.css">
   <link rel="stylesheet" type="text/css" href="/static/normalize.css">
   <link rel="stylesheet" type="text/css" href="/static/metricsgraphics.css">
@@ -11,15 +11,11 @@
   <script src="/static/metricsgraphics.js"></script>
 </head>
 <body>
-        <ul style="list-style-type: none;  margin: 0;  padding: 0; overflow: hidden;  background-color: #000;">    
-            <li style="display: inline; float: left;">
-            <a href="http://bitcoin.org.hk"><img src="/static/bahk-logo-big-white.svg" width="60px" style="padding: 10px 10px;"></a></li>
-            <li style="display: inline; float:right; padding: 15px 15px; color: white;"><a href="/zh-cn/" style="color: rgb(24, 174, 211);"> 中文(中国) </a> | <a href="/zh-hk/" style="color: rgb(24, 174, 211);"> 中文(香港) </a> | EN </li>
-        </ul>        
+  <div class="row" align="right" style="margin: 20px"> <a href="/zh-cn/">中文(中国)</a> | 中文(香港) | <a href="/">EN </a>   </div>
 
   <div class="container" style="margin-top: 40px;">
     <div class="row">
-      <center><h3>1 HK dollar is currently worth <span id="current"></span> sats</h3></center>
+      <center><h3>1 港幣現值 <span id="current"></span> sats</h3></center>
       <script>
       var currentPrice = 0; var ws_ticker_id, t;
    
@@ -72,9 +68,9 @@
       <table class="u-full-width">
         <thead>
           <tr>
-	    <th>Date</th>
-            <th>Price</th>
-            <th>Percent Change</th>
+	    <th>日期</th>
+            <th>價格</th>
+            <th>百分比變化</th>
           </tr>
 		</thead>
         <tbody>
@@ -86,13 +82,12 @@
             {% endfor %}
           </tr>
           {% endfor %}
-
+		
         </tbody>
       </table>
-
       
         <p>
-	*data source from usdsat.com, adapted for HKD
+	* 來自usdsat.com的數據源
 	</p>
 	</div>
   </div>
@@ -149,7 +144,7 @@
         }];
 
         MG.data_graphic({
-            title: 'HKDSAT Historical Performance',
+            title: 'HKDSAT 過往表現',
             data: data,
             full_width: true,
             height: graphHeight,

@@ -39,7 +39,7 @@ def get_10year(lang):
 
     i = 1
     text_array = []
-    if lang == 'cn':
+    if lang == 'zh-cn' or lang == 'zh-hk':
         text_array.append('年前')
         text_array.append('年前')
     elif lang =='en':
@@ -64,17 +64,22 @@ def get_10year(lang):
 
 
 def get_bitfinex():
-    url = "https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
-    res = requests.get(url)
-    rates = res.json()
-    last_price = rates[6]
-    sathkd = round((1/last_price)*100000000/7.75)  # assume exch rate is 7.75
+    satDenominator = 100000000
+    btcDataURL = "https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
+    btcRates = requests.get(btcDataURL).json()
+    btcLastPrice = btcRates[6]
+    
+    hkdDataURL = "https://v6.exchangerate-api.com/v6/22d53ba1468c061792921328/latest/HKD"
+    hkdRates = requests.get(hkdDataURL).json()
+    
+    sathkd = round((1/btcLastPrice)*satDenominator*hkdRates['conversion_rates']['USD'])
     #print(f'bitfinex last price: {last_price}, current sat rate: {sathkd}')
     return sathkd
 
 
 lang = 'en'
-lang = 'cn'
+lang = 'zh-cn'
+lang = 'zh-hk'
 #final = get_10year(lang)
 #print(final)
 

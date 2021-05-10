@@ -4,11 +4,16 @@ from calculate import get_10year
 
 app = Flask(__name__)
 
-@app.route("/cn/")
-def template_test():
+@app.route("/zh-cn/")
+def template_cn():
     # do the computation here
-    my_list = get_10year('cn')
-    return render_template('cn.html', my_list=my_list)
+    my_list = get_10year('zh-cn')
+    return render_template('zh-cn.html', my_list=my_list)
+
+@app.route("/zh-hk/")
+def template_hk():
+    my_list = get_10year('zh-hk')
+    return render_template('zh-hk.html', my_list=my_list)
 
 @app.route('/')
 def root():
