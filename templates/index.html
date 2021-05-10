@@ -1,6 +1,11 @@
 <!doctype html>
 <head>
-  <title>fiat 2 sats</title>
+  <title>HKDSAT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
   <link rel="stylesheet" type="text/css" href="/static/skeleton.css">
   <link rel="stylesheet" type="text/css" href="/static/normalize.css">
   <link rel="stylesheet" type="text/css" href="/static/metricsgraphics.css">
@@ -9,14 +14,53 @@
   <script src="/static/jquery.min.js"></script>
   <script src="/static/d3.v4.min.js"></script>
   <script src="/static/metricsgraphics.js"></script>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
 </head>
 <body>
-        <ul style="list-style-type: none;  margin: 0;  padding: 0; overflow: hidden;  background-color: #000;">    
-            <li style="display: inline; float: left;">
-            <a href="http://bitcoin.org.hk"><img src="/static/bahk-logo-big-white.svg" width="60px" style="padding: 10px 10px;"></a></li>
-            <li style="display: inline; float:right; padding: 15px 15px; color: white;"><a href="/zh-cn/" style="color: rgb(24, 174, 211);"> 中文(中国) </a> | <a href="/zh-hk/" style="color: rgb(24, 174, 211);"> 中文(香港) </a> | EN </li>
-        </ul>        
 
+  <header class="p-1 bg-dark text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+     <div class="container-fluid">
+       <a class="navbar-brand" href="http://bitcoin.org.hk">
+         <img src="/static/bahk-logo-big-white.svg" alt="Bitcoin HK Logo" width="60">
+       </a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="true" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarText">
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           <li class="nav-item">
+             <a class="nav-link active px-2 text-secondary" aria-current="page" href="http://sats.bitcoin.org.hk">HKDsat</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link px-2 text-white" href="http://blocks.bitcoin.org.hk">Bitcoin Explorer</a>
+           </li>
+          <!--
+           <li class="nav-item">
+             <a class="nav-link px-2 text-white" href="#">DCA</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link px-2 text-white" href="#">Lightning</a>
+           </li>
+          -->
+           <li class="nav-item">
+             <a class="nav-link px-2 text-white" href="http://bitcoin.org.hk/contact/">Contact Us</a>
+           </li>
+           <li class="nav-item"> 
+           </li>
+         </ul>
+         <span class="navbar-item" style="color: #fff">
+           <a class="px-2" href="/zh-cn/" style="color: rgb(6, 168, 231)"> 中文(中国) </a> | 
+           <a class="px-2" href="/zh-hk/" style="color: rgb(6, 168, 231)"> 中文(香港)</a>   
+         </span>
+       </div>
+     </div>    
+   </nav>
+ </header>
+ 
   <div class="container" style="margin-top: 40px;">
     <div class="row">
       <center><h3>1 HK dollar is currently worth <span id="current"></span> sats</h3></center>
@@ -69,16 +113,17 @@
       <div id='historical'>
       </div>
       
+      <div class="container">
+
       <table class="u-full-width">
         <thead>
           <tr>
-	    <th>Date</th>
+      	    <th>Date</th>
             <th>Price</th>
             <th>Percent Change</th>
           </tr>
-		</thead>
+		    </thead>
         <tbody>
-		
           {% for dict_item in my_list %}
           <tr>
            {% for key, value in dict_item.items() %}
@@ -86,16 +131,14 @@
             {% endfor %}
           </tr>
           {% endfor %}
-
         </tbody>
       </table>
 
       
-        <p>
-	*data source from usdsat.com, adapted for HKD
+  <p style="font-size: small;">
+	  *data source from usdsat.com, adapted for HKD
 	</p>
 	</div>
-  </div>
     <script>
     d3.json('/static/hkd_historical', function(data) {
         data = MG.convert.date(data, 'date');

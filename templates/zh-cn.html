@@ -65,10 +65,12 @@
       <div id='historical'>
       </div>
       
+      <div class="container">
+
       <table class="u-full-width">
         <thead>
           <tr>
-	    <th>日期</th>
+      	    <th>日期</th>
             <th>价格</th>
             <th>百分比变化</th>
           </tr>
@@ -86,11 +88,10 @@
         </tbody>
       </table>
       
-        <p>
+  <p style="font-size: small;">
 	* 来自usdsat.com的数据源
 	</p>
 	</div>
-  </div>
     <script>
     d3.json('/static/hkd_historical', function(data) {
         data = MG.convert.date(data, 'date');
