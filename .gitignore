@@ -31,3 +31,4 @@ config.yml
 rates.log
 rates.yml
 *.log
+config.yml

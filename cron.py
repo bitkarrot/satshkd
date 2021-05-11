@@ -1,7 +1,5 @@
-import subprocess
 import aiocron
 import asyncio
-import os
 import logging
 import yaml
 import requests
@@ -14,6 +12,8 @@ path = "./"
 config_file = path + 'config.yml'
 rate_file = path + "rates.yml"
 
+# don't forget to create a config.yml before running with format: 
+# forex: "https://v6.exchangerate-api.com/v6/........
 
 def get_rates():
     """
@@ -33,7 +33,7 @@ def get_rates():
 
 #### cron job every hour #### 
 #@aiocron.crontab('0 * * * *')
-@aiocron.crontab('* * * * *')
+@aiocron.crontab('0 * * * *')
 async def attime():
     try:
         sats = get_rates()
