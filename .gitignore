@@ -27,3 +27,7 @@ env
 package.json
 __pycache__
 archive
+config.yml
+rates.log
+rates.yml
+*.log

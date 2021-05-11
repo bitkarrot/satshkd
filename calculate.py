@@ -1,9 +1,17 @@
 from datetime import date
 import json
+import yaml
+import logging
 import requests
 
+logging.basicConfig(filename='satshkd.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.getLogger('satslogger').setLevel(level=logging.WARNING)
+logger = logging.getLogger(__name__)
+
+
 def del_years(d, years):
-    """Return a date that's `years` years after the date (or datetime)
+    """
+    Return a date that's `years` years after the date (or datetime)
     object `d`. Return the same calendar date (month and day) in the
     destination year, if it exists, otherwise use the following day
     (thus changing February 29 to March 1).
@@ -17,7 +25,7 @@ def del_years(d, years):
 
 # generate 10 year historical prices based on today's date
 def get_10year(lang):
-#    path = '/home/bitkarrot/satshkd/static/hkd_historical'
+    #  path = '/home/bitkarrot/satshkd/static/hkd_historical'
     path = './static/hkd_historical'
     filep = open(path)
     historical = json.load(filep)
@@ -35,7 +43,7 @@ def get_10year(lang):
     hist_entries.reverse()
 
     final_list = []
-    today_sats = get_bitfinex()
+    today_sats = get_bitfinex_rate()
 
     i = 1
     text_array = []
@@ -53,7 +61,7 @@ def get_10year(lang):
         sats = "{:,}".format(rawsat)
         percentage = -100 * (rawsat - today_sats)/rawsat
         strp = "{:.3f}".format(percentage) + "%"
-        #print(f'year: {year} sats: {sats} percent: {strp}')
+        # print(f'year: {year} sats: {sats} percent: {strp}')
         if i == 1:
             aset = {'year' : f"{i} {text_array[0]}", 'sats': sats + " sats", 'percent': strp}
         else:
@@ -63,19 +71,33 @@ def get_10year(lang):
     return final_list
 
 
-def get_bitfinex():
-    satDenominator = 100000000
-    btcDataURL = "https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
-    btcRates = requests.get(btcDataURL).json()
-    btcLastPrice = btcRates[6]
-    
-    hkdDataURL = "https://v6.exchangerate-api.com/v6/22d53ba1468c061792921328/latest/HKD"
-    hkdRates = requests.get(hkdDataURL).json()
-    
-    sathkd = round((1/btcLastPrice)*satDenominator*hkdRates['conversion_rates']['USD'])
-    #print(f'bitfinex last price: {last_price}, current sat rate: {sathkd}')
-    return sathkd
+def get_bitfinex_rate():
+    try:
+        path = "./"
+        rates_file = path + 'rates.yml'
 
+        with open(rates_file, 'rb') as f:
+            doc = yaml.load(f, Loader=yaml.FullLoader)
+            sort_file = yaml.dump(doc, sort_keys=True)
+        f.close()
+
+        hkdrate = doc['hkdrate']
+
+        satDenominator = 100000000
+        btcDataURL =  "https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
+
+        btcRates = requests.get(btcDataURL).json()
+        btcLastPrice = btcRates[6]
+
+        sathkd = round((1/btcLastPrice)*satDenominator*hkdrate)
+        # print(f'bitfinex last price: {btcLastPrice}, current sat rate: {sathkd}')
+        return sathkd
+
+    except Exception as e: 
+        logger.info(e)
+
+rate = get_bitfinex_rate()
+print(rate)
 
 lang = 'en'
 lang = 'zh-cn'

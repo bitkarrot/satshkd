@@ -1,0 +1,8 @@
+{
+    "Title": "1 HK dollar is currently worth ",
+    "subtitle" : "HKDSAT Historical Performance",
+    "date" : "Date", 
+    "price" : "Price",
+    "percentchange" : "Percent Change",
+    "footnote" : "data source from usdsat.com, adapted for HKD"
+}
