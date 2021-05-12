@@ -3,6 +3,7 @@ import asyncio
 import logging
 import yaml
 import requests
+from convert2hkd import convert
 
 logging.basicConfig(filename='rates.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger('rateslogger').setLevel(level=logging.WARNING)
@@ -48,6 +49,17 @@ async def attime():
     except Exception as e:
         logger.info(e)
 
+#### cron job every month #### 
+# e.g. next at 2021-06-01 00:00:00
+@aiocron.crontab('0 0 1 * *')
+async def historical_update():
+    logger.info('updating monthly historical data')
+    # print("update historical.....")
+    convert()
+
+
 # cron to pull forex rates 1x per hour
 attime.start()
+historical_update.start()
+
 asyncio.get_event_loop().run_forever()
