@@ -5,9 +5,11 @@ Todo:
 
 To run as python3
 
+[development environment only]
 pip install -r requirements.txt
 python3 sats.py
 
+[production environment only]
 WSGI and NGINX Setup
 https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-20-04
 
