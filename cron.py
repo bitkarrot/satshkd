@@ -33,7 +33,7 @@ def get_rates():
 
 #### cron job every hour #### 
 #@aiocron.crontab('0 * * * *')
-@aiocron.crontab('* * * * *')
+@aiocron.crontab('0 * * * *')
 async def attime():
     try:
         sats = get_rates()
