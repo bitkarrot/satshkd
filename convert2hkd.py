@@ -1,8 +1,9 @@
 import json
 
+path = "./"
 
 try:
-    my_file = open('historical.txt', 'rt')
+    my_file = open(path + 'static/historical', 'rt')
     lines = my_file.read()
     my_file.close()
     jlist = json.loads(lines)
@@ -15,9 +16,9 @@ try:
         whole_price = i['btcusd_rate']
         i['btchkd_rate'] = whole_price*7.75
 
-    print(jlist[3847])
+    print(jlist[len(jlist)-1])
 
-    with open('hkd_historical', 'w') as output:
+    with open(path + 'static/hkd_historical', 'w') as output:
         output.write(json.dumps(jlist))
     output.close()
     
