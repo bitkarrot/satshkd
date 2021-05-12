@@ -8,9 +8,6 @@ To run as python3
 pip install -r requirements.txt
 python3 sats.py
 
-nodejs localization style
-https://medium.com/i18n-and-l10n-resources-for-developers/node-js-tutorial-on-creating-a-multilingual-web-app-df24d8471482
-
 WSGI and NGINX Setup
 https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-20-04
 
