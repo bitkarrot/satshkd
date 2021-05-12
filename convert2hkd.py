@@ -24,6 +24,8 @@ def convert():
         
         # print(len(jlist))
         
+        # we don't need exact rate for historical
+        # just a ball park rate is sufficient for the amts
         for i in jlist:
             price = i['satusd_rate']
             i['sathkd_rate'] = int(price/7.75)
