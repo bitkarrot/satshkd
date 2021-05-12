@@ -1,7 +1,7 @@
 ## README
 
 Todo:
-- localization - style from nodejs link below 
+- historical_hkd - update daily rate as a cron
 
 To run as python3
 

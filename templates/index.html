@@ -53,8 +53,8 @@
            </li>
          </ul>
          <span class="navbar-item" style="color: #fff">
-           <a class="px-2" href="/zh-cn/" style="color: rgb(6, 168, 231)"> 中文(中国) </a> | 
-           <a class="px-2" href="/zh-hk/" style="color: rgb(6, 168, 231)"> 中文(香港)</a>   
+           <a class="px-2" href="{{ desc[6] }}" style="color: rgb(6, 168, 231)"> {{ desc[7] }} </a> | 
+           <a class="px-2" href="{{ desc[8] }}" style="color: rgb(6, 168, 231)"> {{ desc[9] }}</a>   
          </span>
        </div>
      </div>    
@@ -63,7 +63,7 @@
  
   <div class="container" style="margin-top: 40px;">
     <div class="row">
-      <center><h3>1 HK dollar is currently worth <span id="current"></span> sats</h3></center>
+      <center><h3> {{ desc[0] }} <span id="current"></span> sats</h3></center>
       <script>
       var currentPrice = 0; var ws_ticker_id, t;
    
@@ -118,9 +118,9 @@
       <table class="u-full-width">
         <thead>
           <tr>
-      	    <th>Date</th>
-            <th>Price</th>
-            <th>Percent Change</th>
+      	    <th>{{ desc[2] }} </th>
+            <th>{{ desc[3] }} </th>
+            <th>{{ desc[4] }} </th>
           </tr>
 		    </thead>
         <tbody>
@@ -136,7 +136,7 @@
 
       
   <p style="font-size: small;">
-	  *data source from usdsat.com, adapted for HKD
+    * {{ desc[5] }}
 	</p>
 	</div>
     <script>
@@ -192,7 +192,7 @@
         }];
 
         MG.data_graphic({
-            title: 'HKDSAT Historical Performance',
+            title: '{{ desc[1] }}',
             data: data,
             full_width: true,
             height: graphHeight,

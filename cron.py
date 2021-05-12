@@ -8,6 +8,8 @@ logging.basicConfig(filename='rates.log', level=logging.INFO, format='%(asctime)
 logging.getLogger('rateslogger').setLevel(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
+# TODO: create daily cron to update historical_hkd daily rate
+
 path = "./"
 config_file = path + 'config.yml'
 rate_file = path + "rates.yml"

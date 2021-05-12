@@ -96,12 +96,15 @@ def get_bitfinex_rate():
     except Exception as e: 
         logger.info(e)
 
-rate = get_bitfinex_rate()
-print(rate)
 
+# initial test
+# rate = get_bitfinex_rate()
+# print(f'getting bitfinex rate - initial test: {rate}')
+
+'''
 lang = 'en'
 lang = 'zh-cn'
 lang = 'zh-hk'
-#final = get_10year(lang)
-#print(final)
-
+final = get_10year(lang)
+print(final)
+'''
