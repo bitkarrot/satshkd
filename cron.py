@@ -25,7 +25,7 @@ def get_rates():
     f.close()
     
     forexURL = config['forex']
-    print(forexURL)
+    print(f'polling forex rates: {forexURL}')
     hkdRates = requests.get(forexURL).json()
     hkdrate = hkdRates['conversion_rates']['USD']
     return hkdrate
@@ -33,7 +33,7 @@ def get_rates():
 
 #### cron job every hour #### 
 #@aiocron.crontab('0 * * * *')
-@aiocron.crontab('0 * * * *')
+@aiocron.crontab('* * * * *')
 async def attime():
     try:
         sats = get_rates()
@@ -46,6 +46,6 @@ async def attime():
     except Exception as e:
         logger.info(e)
 
-
+# cron to pull forex rates 1x per hour
 attime.start()
 asyncio.get_event_loop().run_forever()
