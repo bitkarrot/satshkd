@@ -1,6 +1,6 @@
-## README
+## HKDSAT Historical Chart 
 
-Todo:
+for entertainment and educational purposes only. 
 
 #### [development environment only]
 To run as python3
