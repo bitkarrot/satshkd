@@ -22,16 +22,21 @@ def convert():
         my_file.close()
         jlist = json.loads(lines)
         
-        # print(len(jlist))
+        print(len(jlist))
+
         
         # we don't need exact rate for historical
         # just a ball park rate is sufficient for the amts
         for i in jlist:
-            price = i['satusd_rate']
+            print(i)
+            price = i['usdsat_rate']
             i['sathkd_rate'] = int(price/7.75)
             whole_price = i['btcusd_rate']
             i['btchkd_rate'] = whole_price*7.75
+            
 
+
+        print(jlist[len(jlist)-1])
         logger.info(jlist[len(jlist)-1])
 
         with open(path + 'static/hkd_historical', 'w') as output:
@@ -39,7 +44,12 @@ def convert():
         output.close()
        
     except Exception as e:
+        print("Exception" + e)
         logger.info(e)
         logger.info("Something unexpected occurred!")
 
 
+
+if __name__ == "__main__":
+
+    convert()
