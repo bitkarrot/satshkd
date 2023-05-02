@@ -1,5 +1,5 @@
 requests==2.25.1
-Flask==1.1.2
+Flask==2.3.2
 PyYAML==5.4
 aiocron==1.4
 asyncio==3.4.3
